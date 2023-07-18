@@ -5,14 +5,16 @@ const fs = require("fs-extra");
 async function main() {
   // compile them in our code
   // compile them separately
-  // RPC URL for Ganache on our PC: http://127.0.0.1:7545
+  // RPC URL for Ganache on our PC: http://172.20.48.1:7545
 
   // connect to our script to the local Blockchain
-  const provider = new ethers.providers.JsonRpcProvider("127.0.0.1:8545");
+  const provider = new ethers.providers.JsonRpcProvider(
+    "http://172.20.48.1:7545"
+  );
 
   // connect to one of the wallets in Ganache using its private Key
   const wallet = new ethers.Wallet(
-    "0x0aab9796875f1c0a8b0cc041033e4a0d262b311a9555d4cbbbef09143bb22f7e",
+    "0x157ddba59444e791e23270fe55f116b3c15ff8b9ceab2ffa793ef5a806cdc7bb",
     provider
   );
 
