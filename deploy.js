@@ -14,7 +14,7 @@ async function main() {
 
   // connect to one of the wallets in Ganache using its private Key
   const wallet = new ethers.Wallet(
-    "0x157ddba59444e791e23270fe55f116b3c15ff8b9ceab2ffa793ef5a806cdc7bb",
+    "0x82361db44afbe08fea0090d14a6d420f739f3b312abe2f65408d3550cde706ad",
     provider
   );
 
@@ -29,8 +29,10 @@ async function main() {
   // contractFactory is an object used to deploy contracts using ethers
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
   console.log("Deploying, please wait...");
-  const contract = await contractFactory.deploy(); // STOP here! Wait for contract to deploy
-  console.log(contract);
+
+  const gasLimit = 5000000;
+  const contract = await contractFactory.deploy({ gasLimit }); // STOP here! Wait for contract to deploy
+  console.log("Contract address:", contract.address);
 }
 
 //to compile the code, we need the ABI and the Binary compiled code of the contract
