@@ -17,8 +17,10 @@ async function main() {
     "0x3c24f128e219c80ca2889737351a6384ad33330c216c1f8d037aaec7aa049115",
     provider
   );
+
   // To compile the code, we need the ABI and the Binary compiled code of the contract
   // Use fs to read from SimpleStorage_sol_SimpleStorage.abi and SimpleStorage_sol_SimpleStorage.bin
+  const abi = fs.readFile;
 }
 
 //to compile the code, we need the ABI and the Binary compiled code of the contract
