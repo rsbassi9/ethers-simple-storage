@@ -8,13 +8,11 @@ async function main() {
   // RPC URL for Ganache on our PC: http://127.0.0.1:7545
 
   // connect to our script to the local Blockchain
-  const provider = new ethers.providers.JsonRpcProvider(
-    "http://127.0.0.1:7545"
-  );
+  const provider = new ethers.providers.JsonRpcProvider("127.0.0.1:8545");
 
   // connect to one of the wallets in Ganache using its private Key
   const wallet = new ethers.Wallet(
-    "0x3c24f128e219c80ca2889737351a6384ad33330c216c1f8d037aaec7aa049115",
+    "0x0aab9796875f1c0a8b0cc041033e4a0d262b311a9555d4cbbbef09143bb22f7e",
     provider
   );
 
