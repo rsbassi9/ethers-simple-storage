@@ -20,7 +20,13 @@ async function main() {
 
   // To compile the code, we need the ABI and the Binary compiled code of the contract
   // Use fs to read from SimpleStorage_sol_SimpleStorage.abi and SimpleStorage_sol_SimpleStorage.bin
-  const abi = fs.readFile;
+  const abi = fs.readFileSync("./SimpleStorage_sol_StimpleStorage.abi", "utf8");
+  const binary = fs.readFileSync(
+    "./SimpleStorage_sol_StimpleStorage.bin",
+    "utf8"
+  );
+  // contractFactory is an object used to deploy contracts using ethers
+  const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
 }
 
 //to compile the code, we need the ABI and the Binary compiled code of the contract
