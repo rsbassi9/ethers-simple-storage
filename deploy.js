@@ -9,12 +9,20 @@ async function main() {
   // RPC URL for Ganache on our PC: http://172.20.48.1:7545
 
   // connect to our script to the local Blockchain
-  const provider = new ethers.providers.JsonRpcProvider(
-    "http://172.20.48.1:7545"
-  );
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
 
   // connect to one of the wallets in Ganache using its private Key
-  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  //const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  // Instead of the above, we can use the encrypted Key:
+  const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf8");
+  // In terminal, delcare the PRIVATE_KEY_PASSWORD=xyz..., then node deploy.js.
+  // This way, the password is not stored anywhere but is called locally.
+  // Clear your terminal history using history -c
+  let wallet = new ethers.Wallet.fromEncryptedJsonSync(
+    encryptedJson,
+    process.env.PRIVATE_KEY_PASSWORD
+  );
+  wallet = await wallet.connect(provider);
 
   // To compile the code, we need the ABI and the Binary compiled code of the contract
   // Use fs to read from SimpleStorage_sol_SimpleStorage.abi and SimpleStorage_sol_SimpleStorage.bin
